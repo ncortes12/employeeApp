@@ -42,21 +42,37 @@ var snap = childSnapshot.val();
 console.log(snap.name, snap.role, snap.start, snap.rate);
 var newRow = $("<tr></tr>");
 
-var nameRow = $("<td></td>")
+var nameRow = $("<td></td>");
 nameRow.text(snap.name);
 newRow.append(nameRow);
-var roleRow = $("<td></td>")
+
+var roleRow = $("<td></td>");
 roleRow.text(snap.role);
 newRow.append(roleRow);
-var startRow = $("<td></td>")
+
+var startRow = $("<td></td>");
 startRow.text(snap.start);
 newRow.append(startRow);
-var blankRow = $("<td></td>")
+
+var blankRow = $("<td></td>");
+var monthsWorked = moment().diff(snap.start, "month");
+blankRow.text(monthsWorked);
 newRow.append(blankRow);
-var rateRow = $("<td></td>")
+
+var rateRow = $("<td></td>");
 rateRow.text(snap.rate);
 newRow.append(rateRow);
+
+var owedRow = $("<td></td>");
+var numRate = parseInt(snap.rate);
+var numMonths = parseInt(monthsWorked);
+var owed = (numRate * numMonths);
+owedRow.text(owed);
+newRow.append(owedRow);
+
 $("#tableInput").append(newRow);
+
+
 
 
 })
